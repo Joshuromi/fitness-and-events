@@ -2,7 +2,7 @@
   "name": "fitness-and-events",
   "version": "1.0.0",
   "description": "A event driven fitness app",
-  "main": "src/server.js",
+  "main": "server.js",
   "scripts": {
     "start": "nodemon server"
   },
