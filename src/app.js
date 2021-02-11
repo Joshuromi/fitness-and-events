@@ -5,8 +5,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Hello from Express");
-});
+const homeRoute = require("./routes/home.router");
+const userRoute = require("./routes/user.router");
+
+app.use("/", homeRoute);
+app.use("/user", userRoute);
 
 module.exports = app;
