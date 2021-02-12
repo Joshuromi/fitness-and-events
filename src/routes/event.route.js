@@ -1,7 +1,12 @@
 const express = require("express");
-const router = express.Router();
+const multer = require("multer");
 const eventController = require("../controller/event.controller");
+const uploadConfig = require("../../config/upload.config");
 
-router.post("/new", eventController.createEvent);
+const router = express.Router();
+const uploader = multer(uploadConfig);
+
+router.post("/new", uploader.single("thumbnail"), eventController.createEvent);
+router.get("/:eventId", eventController.getEventById);
 
 module.exports = router;

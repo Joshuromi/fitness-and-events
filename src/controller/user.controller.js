@@ -1,4 +1,3 @@
-const { response } = require("../app");
 const bcrypt = require("bcrypt");
 const User = require("../models/user.model");
 const userController = {};
@@ -26,7 +25,7 @@ userController.registerUser = async (req, res) => {
         .json({ message: "User with this email already exist!" });
     }
   } catch (error) {
-    throw Error(`Error registering user: ${error}`);
+    return res.status(400).json({ message: error.message });
   }
 };
 
@@ -37,7 +36,7 @@ userController.getUserById = async (req, res) => {
     const user = await User.findById(userId);
     res.status(200).json(user);
   } catch (error) {
-    return res.status(400).json({ message: "User id  does not exist!" });
+    return res.status(400).json({ message: "User id does not exist!" });
   }
 };
 

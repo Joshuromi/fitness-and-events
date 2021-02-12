@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const app = require("./src/app");
-const { port } = require("./config/config.server");
+const { port } = require("./config/server.config");
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();

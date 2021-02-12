@@ -4,6 +4,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const homeRoute = require("./routes/home.route");
 const userRoute = require("./routes/user.route");
@@ -12,5 +13,6 @@ const eventRoute = require("./routes/event.route");
 app.use("/", homeRoute);
 app.use("/user", userRoute);
 app.use("/event", eventRoute);
+app.use("/files", express.static("files"));
 
 module.exports = app;

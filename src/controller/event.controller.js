@@ -4,11 +4,11 @@ const eventController = {};
 
 eventController.createEvent = async (req, res) => {
   const { title, description, price, date } = req.body;
-  const { userId } = req.headers;
+  const { user_id } = req.headers;
   const { filename } = req.file;
 
   try {
-    const user = await User.findById(userId);
+    const user = await User.findById(user_id);
     if (!user) {
       return res.status(400).json({ message: "User does not exist!" });
     }
@@ -16,17 +16,31 @@ eventController.createEvent = async (req, res) => {
     const event = new Event({
       title,
       description,
-      price,
+      price: parseFloat(price),
       date,
-      user: userId,
+      user: user_id,
       thumbnail: filename,
     });
 
     const createdEvent = await event.save();
     res.status(200).json(createdEvent);
   } catch (error) {
-    res.status(400).Json({ message: error.message });
-    console.log(error);
+    return res.status(400).json({ message: error.message });
+  }
+};
+
+eventController.getEventById = async (req, res) => {
+  const { eventId } = req.params;
+
+  try {
+    const event = await Event.findById(eventId);
+    if (event) {
+      res.status(200).json(event);
+    } else {
+      return res.status(400).json({ message: "Event does not exist!" });
+    }
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
   }
 };
 
