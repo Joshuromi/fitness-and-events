@@ -1,9 +1,9 @@
 const { response } = require("../app");
 const bcrypt = require("bcrypt");
-const User = require("../models/user.models");
-const controller = {};
+const User = require("../models/user.model");
+const userController = {};
 
-controller.registerUser = async (req, res) => {
+userController.registerUser = async (req, res) => {
   const { firstName, lastName, email, password, dateCreated } = req.body;
 
   try {
@@ -30,4 +30,15 @@ controller.registerUser = async (req, res) => {
   }
 };
 
-module.exports = controller;
+userController.getUserById = async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    const user = await User.findById(userId);
+    res.status(200).json(user);
+  } catch (error) {
+    return res.status(400).json({ message: "User id  does not exist!" });
+  }
+};
+
+module.exports = userController;
