@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const UserModel = require("../models/user.model");
 const userController = {};
 
+//=========== Register new user ==================================
 userController.registerUser = async (req, res) => {
   const { firstName, lastName, email, password, dateCreated } = req.body;
 
@@ -29,6 +30,7 @@ userController.registerUser = async (req, res) => {
   }
 };
 
+//=============== Get user by Id ===================================
 userController.getUser = async (req, res) => {
   res.status(200).json(res.user);
 };

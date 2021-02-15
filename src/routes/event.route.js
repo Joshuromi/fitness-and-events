@@ -7,9 +7,7 @@ const router = express.Router();
 const uploader = multer(uploadConfig);
 
 router.post("/new", uploader.single("thumbnail"), eventController.createEvent);
-router.get("/", eventController.getAllEvents);
 router.get("/:eventId", eventController.getEventById);
 router.delete("/:eventId", eventController.deleteEvent);
-router.get("/sports/:sport", eventController.getAllEvents);
 
 module.exports = router;
