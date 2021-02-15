@@ -6,6 +6,7 @@ const EventSchema = new mongoose.Schema(
     description: { type: String, required: true },
     price: { type: Number, required: true },
     thumbnail: { type: String },
+    sport: { type: String, required: true },
     date: { type: Date, default: Date.now },
     user: {
       type: mongoose.Schema.Types.ObjectId,

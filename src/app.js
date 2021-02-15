@@ -12,7 +12,7 @@ const eventRoute = require("./routes/event.route");
 
 app.use("/", homeRoute);
 app.use("/user", userRoute);
-app.use("/event", eventRoute);
+app.use("/events", eventRoute);
 app.use("/files", express.static("files"));
 
 module.exports = app;
