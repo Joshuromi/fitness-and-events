@@ -1,5 +1,6 @@
 const Event = require("../models/event.model");
 const User = require("../models/user.model");
+
 const eventController = {};
 
 eventController.createEvent = async (req, res) => {

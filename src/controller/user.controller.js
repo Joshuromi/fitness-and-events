@@ -1,16 +1,16 @@
 const bcrypt = require("bcrypt");
-const User = require("../models/user.model");
+const UserModel = require("../models/user.model");
 const userController = {};
 
 userController.registerUser = async (req, res) => {
   const { firstName, lastName, email, password, dateCreated } = req.body;
 
   try {
-    const existingUser = await User.findOne({ email });
+    const existingUser = await UserModel.findOne({ email });
 
     if (!existingUser) {
       const hashedPassword = await bcrypt.hash(password, 10);
-      const user = new User({
+      const user = new UserModel({
         firstName,
         lastName,
         email,
@@ -29,15 +29,8 @@ userController.registerUser = async (req, res) => {
   }
 };
 
-userController.getUserById = async (req, res) => {
-  const { userId } = req.params;
-
-  try {
-    const user = await User.findById(userId);
-    res.status(200).json(user);
-  } catch (error) {
-    return res.status(400).json({ message: "User id does not exist!" });
-  }
+userController.getUser = async (req, res) => {
+  res.status(200).json(res.user);
 };
 
 module.exports = userController;
