@@ -31,8 +31,18 @@ userController.registerUser = async (req, res) => {
 };
 
 //=============== Get user by Id ===================================
-userController.getUser = async (req, res) => {
-  res.status(200).json(res.user);
+userController.getUserById = async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const user = await UserModel.findById(userId);
+    if (user) {
+      res.status(200).json(user);
+    } else {
+      return res.status(404).json({ message: "User id does not exist!" });
+    }
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
 };
 
 module.exports = userController;
