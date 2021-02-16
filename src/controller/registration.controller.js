@@ -2,6 +2,7 @@ const RegistrationModel = require("../models/registration.model");
 
 const registrationController = {};
 
+//============Register a User =================================
 registrationController.registerUser = async (req, res) => {
   const { user_id } = req.headers;
   const { eventId } = req.params;
@@ -27,20 +28,9 @@ registrationController.registerUser = async (req, res) => {
   }
 };
 
-registrationController.getUserRegistration = async (req, res) => {
-  const { registrationId } = req.params;
-  try {
-    const registration = await RegistrationModel.findById(registrationId);
-    if (registration) {
-      res.status(200).json(registration);
-    } else {
-      return res
-        .status(404)
-        .json({ message: "Registration id does not exist!" });
-    }
-  } catch (error) {
-    return res.status(500).json({ message: error.message });
-  }
+//=============Get a user Registration=====================
+registrationController.getRegistration = async (req, res) => {
+  res.status(200).json(res.registration);
 };
 
 module.exports = registrationController;

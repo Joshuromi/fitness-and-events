@@ -1,8 +1,25 @@
 const express = require("express");
-const RegistrationController = require("../controller/registration.controller");
+const registrationController = require("../controller/registration.controller");
+const registrationStatusController = require("../controller/registrationStatus.controller");
+const registrationMiddleware = require("../middleware/registration.middleware");
 
 const router = express.Router();
 
-router.post("/:eventId", RegistrationController.registerUser);
+router.post("/:eventId", registrationController.registerUser);
+router.get(
+  "/:registrationId",
+  registrationMiddleware.getRegistrationById,
+  registrationController.getRegistration
+);
+router.post(
+  "/:registrationId/approvals",
+  registrationMiddleware.getRegistrationById,
+  registrationStatusController.approveRegistration
+);
+router.post(
+  "/:registrationId/approvals",
+  registrationMiddleware.getRegistrationById,
+  registrationStatusController.rejectRegistration
+);
 
 module.exports = router;
