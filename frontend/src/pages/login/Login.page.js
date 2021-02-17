@@ -12,14 +12,24 @@ import {
   CardTitle,
 } from "reactstrap";
 
-const Login = () => {
+const Login = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(email, password);
+
+    const response = await api.post("/login", { email, password });
+    const userId = response.data._id;
+
+    if (userId) {
+      localStorage.setItem("user", userId);
+      history.push("/dashboard");
+    } else {
+      alert(response.data.message);
+    }
   };
+
   return (
     <div className="mx-auto col-md-6">
       <Card>
