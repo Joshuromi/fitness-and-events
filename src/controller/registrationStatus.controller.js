@@ -4,8 +4,9 @@ const registrationStatusController = {};
 registrationStatusController.approveRegistration = async (req, res) => {
   const registration = res.registration;
   try {
-    registration.approve = true;
-    registration.save();
+    registration.approved = true;
+    await registration.save();
+    res.status(200).json(registration);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -15,8 +16,9 @@ registrationStatusController.approveRegistration = async (req, res) => {
 registrationStatusController.rejectRegistration = async (req, res) => {
   const registration = res.registration;
   try {
-    registration.approve = false;
-    registration.save();
+    registration.approved = false;
+    await registration.save();
+    res.status(200).json(registration);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }

@@ -17,7 +17,7 @@ router.post(
   registrationStatusController.approveRegistration
 );
 router.post(
-  "/:registrationId/approvals",
+  "/:registrationId/rejections",
   registrationMiddleware.getRegistrationById,
   registrationStatusController.rejectRegistration
 );
