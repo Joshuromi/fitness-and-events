@@ -7,7 +7,7 @@ const EventSchema = new mongoose.Schema(
     price: { type: Number, required: true },
     thumbnail: { type: String },
     sport: { type: String, required: true },
-    date: { type: Date, default: Date.now },
+    date: { type: Date, default: Date },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

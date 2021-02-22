@@ -1,0 +1,9 @@
+body {
+  font-family: "Raleway", sans-serif;
+  background-image: linear-gradient(to left, #fbc2eb 0%, #a6c1ee 100%);
+}
+
+.header {
+  font-family: "Pacifico", cursive;
+  margin: 10px;
+}

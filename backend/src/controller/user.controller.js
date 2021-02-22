@@ -19,7 +19,12 @@ userController.registerUser = async (req, res) => {
         dateCreated,
       });
       const newUser = await user.save();
-      res.status(201).json(newUser);
+      res.status(201).json({
+        _id: user._id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+      });
     } else {
       return res
         .status(400)
