@@ -1,16 +1,8 @@
 import React, { useState } from "react";
+import { HeaderText } from "../../components/header-text/headerText.component";
+import { Button, Form, FormGroup, Input, Col, Card, CardBody, CardTitle } from "reactstrap";
 import api from "../../services/api";
-import {
-  Button,
-  Form,
-  FormGroup,
-  Input,
-  Col,
-  Card,
-  CardImg,
-  CardBody,
-  CardTitle,
-} from "reactstrap";
+import "./login.styles.scss";
 
 const Login = ({ history }) => {
   const [email, setEmail] = useState("");
@@ -31,15 +23,10 @@ const Login = ({ history }) => {
   };
 
   return (
-    <div className="mx-auto col-md-6 mt-4 ">
-      <Card>
-        <CardImg
-          top
-          width="100%"
-          src="https://res.cloudinary.com/ehizuelen/image/upload/v1613573203/sprint-image_kly9gp.jpg"
-          alt="sprinters"
-        />
+    <div className="login">
+      <Card className="mx-auto col-md-6 mt-4">
         <CardBody>
+          <HeaderText />
           <CardTitle className="text-center mb-4" tag="h6">
             Login to your account.
           </CardTitle>

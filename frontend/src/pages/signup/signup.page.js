@@ -1,17 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { HeaderText } from "../../components/header-text/headerText.component";
+import { Button, Form, FormGroup, Input, Col, Card, CardBody, CardTitle } from "reactstrap";
 import api from "../../services/api";
-import {
-  Button,
-  Form,
-  FormGroup,
-  Input,
-  Col,
-  Card,
-  CardImg,
-  CardBody,
-  CardTitle,
-} from "reactstrap";
+import "./signup.styles.scss";
 
 const SignUp = ({ history }) => {
   const [firstName, setFirstName] = useState("");
@@ -29,7 +21,6 @@ const SignUp = ({ history }) => {
       lastName,
     });
     const userId = response.data._id || false;
-    console.log(response.data);
 
     if (userId) {
       localStorage.setItem("user", userId);
@@ -40,18 +31,11 @@ const SignUp = ({ history }) => {
   };
 
   return (
-    <div className="mx-auto col-md-8 mt-4">
-      <Card>
-        <CardImg
-          top
-          width="100%"
-          src="https://res.cloudinary.com/ehizuelen/image/upload/v1613652735/ready-state_h5upnf.jpg"
-          alt="sprinters"
-        />
+    <div className="signin">
+      <Card className="mx-auto col-md-8 mt-4">
         <CardBody>
-          <CardTitle className="text-center mb-4" tag="h6">
-            Sign up for a new account.
-          </CardTitle>
+          <HeaderText />
+          <CardTitle className="text-center mb-4" tag="h6">Sign up for a new account.</CardTitle>
           <Form onSubmit={handleSubmit}>
             <FormGroup row>
               <Col className="mx-auto" sm={10}>
@@ -99,15 +83,15 @@ const SignUp = ({ history }) => {
             </FormGroup>
             <div className="col text-center">
               <Button className="btn-sm" color="dark" outline>
-                Submit
+                Sign Up
               </Button>
             </div>
           </Form>
         </CardBody>
+        <p className="text-center mt-2">
+          Already have an account? <Link to="/login">Click here to Login.</Link>
+        </p>
       </Card>
-      <p className="text-center mt-2">
-        Already have an account? <Link to="/login">Click here to Login.</Link>
-      </p>
     </div>
   );
 };

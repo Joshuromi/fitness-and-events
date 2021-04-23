@@ -1,0 +1,40 @@
+.event-page-header {
+    color: #fff;
+}
+
+.event-form {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 5px;
+
+    #thumbnail {
+        margin-bottom: 20px;
+        border: 1px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 120px;
+
+        input {
+            display: none;
+        }
+    }
+
+    .has-thumbnail {
+        border: 0;
+
+         img {
+            display: none;
+        }
+    }
+
+    .error-message {
+        color: #f00;
+        text-align: center;
+        padding: 10px;
+
+    }
+}

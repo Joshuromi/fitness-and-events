@@ -5,7 +5,7 @@ const dashboardController = {};
 //================= Get all events =======================================
 dashboardController.getAllEvents = async (req, res) => {
   const { sport } = req.params;
-  const query = sport || {};
+  const query = sport ? { sport } : {};
 
   try {
     const events = await EventModel.find(query);
